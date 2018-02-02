@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "ES5",
+      "ES2015",
+      "DOM"
+    ],
+    "module": "es2015",
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "allowJs": true,
+    "pretty": true,
+    "diagnostics": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true,
+    "useTranspileModule": true,
+    "useBable": true,
+    "useCache": true,
+    "doTypeCheck": true,
+    "forkChecker": true
+  }
+}
