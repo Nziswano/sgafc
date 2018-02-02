@@ -1,11 +1,13 @@
 const path = require('path')
 const BabiliPlugin = require('babili-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
       title: 'Demo Page',
+      inject: true,
       template: './src/index.html'
     }
   )
@@ -16,6 +18,7 @@ const moduleConfig = [
     test: /\.scss$/,
     exclude: /(node_modules)/,
     use: [
+      { loader: 'style-loader' },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
       { loader: 'sass-loader' }
@@ -25,6 +28,7 @@ const moduleConfig = [
     test: /\.css$/,
     exclude: /(node_modules)/,
     use: [
+      { loader: 'style-loader' },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' }
     ]
@@ -72,9 +76,6 @@ const webpackConfig = {
   module: { rules: moduleConfig },
   devServer: serverConfig
 }
-/*
-module.exports.plugins = (module.exports.plugins || []).concat([
-*/
 
 if (process.env.NODE_ENV === 'production') {
   webpackConfig.plugins = (webpackConfig.plugins || []).concat([
