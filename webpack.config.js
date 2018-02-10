@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vendorPackages = require('./package.json')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 
+const outputDir = path.join(__dirname, 'dist')
+
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
@@ -17,6 +19,9 @@ const pluginConfig = [
       template: './src/index.ejs'
     }
   ),
+  new webpack.DefinePlugin({
+    __STATE__: JSON.stringify(process.env.NODE_ENV)
+  }),
   new CheckerPlugin()
 ]
 
@@ -101,7 +106,7 @@ const moduleConfigProd = [
 ]
 
 const serverConfig = {
-  contentBase: path.join(__dirname, 'dist'),
+  contentBase: outputDir,
   compress: true,
   open: false,
   port: 9000,
@@ -117,7 +122,7 @@ const webpackConfig = {
     vendor: Object.keys(vendorPackages.dependencies).filter(name => (name !== 'font-awesome' && name !== 'foundation-sites'))
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: outputDir,
     filename: '[name].js'
   },
   resolve: {
@@ -133,12 +138,7 @@ const webpackConfig = {
 if (process.env.NODE_ENV === 'production') {
   webpackConfig.plugins = (webpackConfig.plugins || []).concat([
     new BabiliPlugin({}),
-    new CleanWebPackPlugin(['./dist']),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
+    new CleanWebPackPlugin([outputDir]),
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
