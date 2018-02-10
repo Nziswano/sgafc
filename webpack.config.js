@@ -58,8 +58,7 @@ const moduleConfigDev = [
     ]
   },
   {
-    test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    exclude: /(node_modules)/,
+    test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/,
     loader: 'url-loader?limit=100000'
   }
 ]
@@ -70,8 +69,24 @@ const moduleConfigProd = [
     loader: 'html-loader'
   },
   {
+    test: /\.scss$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: combineLoaders([
+        {
+          loader: 'css-loader'
+        },
+        {
+          loader: 'postcss-loader'
+        },
+        {
+          loader: 'sass-loader'
+        }
+      ])
+    })
+  },
+  {
     test: /\.css$/,
-    exclude: /node_modules/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: combineLoaders([
@@ -83,15 +98,6 @@ const moduleConfigProd = [
         }
       ])
     })
-  },
-  {
-    test: /\.css$/,
-    exclude: /(node_modules)/,
-    use: [
-      { loader: 'style-loader' },
-      { loader: 'css-loader' },
-      { loader: 'postcss-loader' }
-    ]
   },
   {
     test: /\.js$/,
@@ -107,8 +113,7 @@ const moduleConfigProd = [
     ]
   },
   {
-    test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    exclude: /(node_modules)/,
+    test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/,
     loader: 'url-loader?limit=100000'
   }
 ]
@@ -142,7 +147,7 @@ const webpackConfig = {
 if (process.env.NODE_ENV === 'production') {
   webpackConfig.plugins = (webpackConfig.plugins || []).concat([
     new BabiliPlugin({}),
-    new CleanWebPackPlugin(['./dist/assets']),
+    new CleanWebPackPlugin(['./dist']),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

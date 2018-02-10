@@ -1,3 +1,5 @@
+import "@/assets/styles/styles.scss";
+
 class ViewController {
   constructor() {
     const el = document.getElementById('root');
