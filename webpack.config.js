@@ -20,29 +20,10 @@ const pluginConfig = [
   new CheckerPlugin()
 ]
 
-const moduleConfigDev = [
+const moduleConfigBase = [
   {
     test: /\.html$/,
     loader: 'html-loader'
-  },
-  {
-    test: /\.scss$/,
-    exclude: /(node_modules)/,
-    use: [
-      { loader: 'style-loader' },
-      { loader: 'css-loader' },
-      { loader: 'postcss-loader' },
-      { loader: 'sass-loader' }
-    ]
-  },
-  {
-    test: /\.css$/,
-    exclude: /(node_modules)/,
-    use: [
-      { loader: 'style-loader' },
-      { loader: 'css-loader' },
-      { loader: 'postcss-loader' }
-    ]
   },
   {
     test: /\.js$/,
@@ -63,11 +44,29 @@ const moduleConfigDev = [
   }
 ]
 
-const moduleConfigProd = [
+const moduleConfigDev = [
   {
-    test: /\.html$/,
-    loader: 'html-loader'
+    test: /\.scss$/,
+    exclude: /(node_modules)/,
+    use: [
+      { loader: 'style-loader' },
+      { loader: 'css-loader' },
+      { loader: 'postcss-loader' },
+      { loader: 'sass-loader' }
+    ]
   },
+  {
+    test: /\.css$/,
+    exclude: /(node_modules)/,
+    use: [
+      { loader: 'style-loader' },
+      { loader: 'css-loader' },
+      { loader: 'postcss-loader' }
+    ]
+  }
+]
+
+const moduleConfigProd = [
   {
     test: /\.scss$/,
     use: ExtractTextPlugin.extract({
@@ -98,23 +97,6 @@ const moduleConfigProd = [
         }
       ])
     })
-  },
-  {
-    test: /\.js$/,
-    exclude: /(node_modules)/,
-    loader: 'babel-loader'
-  },
-  {
-    test: /\.tsx?$/,
-    exclude: /(node_modules)/,
-    use: [
-      { loader: 'babel-loader' },
-      { loader: 'awesome-typescript-loader' }
-    ]
-  },
-  {
-    test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/,
-    loader: 'url-loader?limit=100000'
   }
 ]
 
@@ -122,7 +104,11 @@ const serverConfig = {
   contentBase: path.join(__dirname, 'dist'),
   compress: true,
   open: false,
-  port: 9000
+  port: 9000,
+  historyApiFallback: {
+    verbose: true,
+    disableDotRule: true
+  }
 }
 
 const webpackConfig = {
@@ -172,10 +158,11 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     })
   ])
-  webpackConfig.module = { rules: moduleConfigProd }
+  webpackConfig.module = { rules: moduleConfigBase.concat(moduleConfigProd) }
+  webpackConfig.devtool = '#source-map'
 } else {
-  webpackConfig.module = { rules: moduleConfigDev }
-  webpackConfig.devtool = 'eval-source-map'
+  webpackConfig.module = { rules: moduleConfigBase.concat(moduleConfigDev) }
+  webpackConfig.devtool = 'cheap-module-source-map'
 }
 
 module.exports = webpackConfig

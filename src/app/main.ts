@@ -1,9 +1,10 @@
 import "@/assets/styles/styles.scss";
+import main from "@/app/main.html";
 
 class ViewController {
   constructor() {
     const el = document.getElementById('root');
-    el.outerHTML = "<h1>Hello World</h1>";
+    el.outerHTML = main;
     console.log('hello world');
   }
 }
