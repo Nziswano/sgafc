@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "ES5",
-      "ES2015",
-      "DOM"
-    ],
-    "module": "es2015",
+    "target": "ESNext",
+    "module": "ESNext",
     "jsx": "preserve",
     "noImplicitAny": false,
     "noImplicitThis": true,
