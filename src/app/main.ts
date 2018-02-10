@@ -5,7 +5,6 @@ class ViewController {
   constructor() {
     const el = document.getElementById('root');
     el.outerHTML = main;
-    console.log('hello world');
   }
 }
 
