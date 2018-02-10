@@ -13,7 +13,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader')
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
-      title: 'Demo Page',
+      title: 'SABBN',
       template: './src/index.ejs'
     }
   ),
@@ -161,6 +161,7 @@ if (process.env.NODE_ENV === 'production') {
   webpackConfig.module = { rules: moduleConfigBase.concat(moduleConfigProd) }
   webpackConfig.devtool = '#source-map'
 } else {
+  /* Development */
   webpackConfig.module = { rules: moduleConfigBase.concat(moduleConfigDev) }
   webpackConfig.devtool = 'cheap-module-source-map'
 }
