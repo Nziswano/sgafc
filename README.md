@@ -1,1 +1,1 @@
-# South Africa Black Business Network Site
+# Base setup for JavaScript Projects

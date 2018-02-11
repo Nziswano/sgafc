@@ -15,7 +15,7 @@ const outputDir = path.join(__dirname, 'dist')
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
-      title: 'SABBN',
+      title: 'Base Project',
       template: './src/index.ejs'
     }
   ),
