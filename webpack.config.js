@@ -15,7 +15,7 @@ const outputDir = path.join(__dirname, 'dist')
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
-      title: 'Base Project',
+      title: 'Kinder Admin',
       template: './src/index.ejs'
     }
   ),
@@ -119,7 +119,7 @@ const serverConfig = {
 const webpackConfig = {
   entry: {
     app: './src/app/main.ts',
-    vendor: Object.keys(vendorPackages.dependencies).filter(name => (name !== 'font-awesome' && name !== 'foundation-sites'))
+    vendor: Object.keys(vendorPackages.dependencies).filter(name => (name !== 'font-awesome' && name !== 'foundation-sites' && name !== '@fortawesome/fontawesome-free-webfonts'))
   },
   output: {
     path: outputDir,
