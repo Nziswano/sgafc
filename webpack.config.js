@@ -15,7 +15,7 @@ const outputDir = path.join(__dirname, 'dist')
 const pluginConfig = [
   new HtmlWebpackPlugin(
     {
-      title: 'Kinder Admin',
+      title: 'Welcome',
       template: './src/index.ejs'
     }
   ),

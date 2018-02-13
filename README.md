@@ -1,3 +1,1 @@
-# Kinder Web Administration
-
-## Will use Vue
+# Basic Coming Soon Website

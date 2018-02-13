@@ -1,1 +1,18 @@
 @import 'foundation';
+
+body {
+  background: $primary-color url('https://res.cloudinary.com/nziswano/image/upload/q_auto:good/v1518513065/IMG_2043.png') no-repeat fixed center content-box;
+  background-size: cover;
+
+  h1 {
+    color: $white;
+    font-size: 12rem;
+    font-weight: 900;
+    margin-top: 10rem;
+    text-align: center;
+    @include breakpoint(medium down) {
+      font-size: 5rem;
+      margin-top: 5rem;
+    }
+  }
+}
