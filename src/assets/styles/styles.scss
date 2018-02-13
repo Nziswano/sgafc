@@ -1,7 +1,7 @@
 @import 'foundation';
 
 body {
-  background: $primary-color url('https://res.cloudinary.com/nziswano/image/upload/q_auto:good/v1518513065/IMG_2043.png') no-repeat fixed center content-box;
+  background: $primary-color url('https://res.cloudinary.com/nziswano/image/upload/q_auto:good/v1518513067/IMG_6235.png') no-repeat fixed center content-box;
   background-size: cover;
 
   h1 {
@@ -13,6 +13,27 @@ body {
     @include breakpoint(medium down) {
       font-size: 5rem;
       margin-top: 5rem;
+    }
+  }
+
+  .content {
+    color: $white;
+    font-size: 1.75rem;
+    h1 {
+      font-size: 5rem;
+    }
+
+    address {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .contact-us {
+      // display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
